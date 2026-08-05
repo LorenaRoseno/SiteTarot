@@ -1,122 +1,5 @@
 /* =========================
-   VARIÁVEIS GLOBAIS
-========================= */
-
-:root {
-    --fundo-escuro: #020209;
-    --fundo-transparente: rgba(2, 2, 9, 0.82);
-
-    --prata-cor: #e8e8e8;
-    --texto-principal: #ffffff;
-    --texto-secundario: #c7c7c7;
-
-    --prata-brilho: linear-gradient(
-        120deg,
-        #ffffff 0%,
-        #dcdcdc 25%,
-        #ffffff 45%,
-        #bfbfbf 60%,
-        #ffffff 75%,
-        #eaeaea 100%
-    );
-
-    --borda-padrao: 2px solid var(--prata-cor);
-
-    --raio-pequeno: 10px;
-    --raio-medio: 15px;
-
-    --sombra-padrao: 0 0 10px rgba(0, 0, 0, 0.8);
-    --sombra-brilho: 0 0 20px rgba(232, 232, 232, 0.7);
-
-    --transicao-padrao: 0.3s ease;
-}
-
-
-/* =========================
-   RESET BÁSICO
-========================= */
-
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 20px;
-}
-
-body {
-    min-height: 100vh;
-    margin: 0;
-
-    overflow-x: hidden;
-
-    font-family: "Segoe UI", Arial, sans-serif;
-    line-height: 1.6;
-    color: var(--texto-principal);
-
-    background:
-        url("img/bgfull.png"),
-        linear-gradient(
-            -45deg,
-            #000000,
-            #020209,
-            #000000,
-            #020209
-        );
-
-    background-size:
-        500px 500px,
-        400% 400%;
-
-    background-repeat:
-        repeat,
-        no-repeat;
-
-    animation: fundo 120s ease infinite;
-}
-
-
-/* =========================
-   ANIMAÇÃO DO FUNDO
-========================= */
-
-@keyframes fundo {
-    0% {
-        background-position: 0 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0 50%;
-    }
-}
-
-
-/* =========================
-   FONTE
-========================= */
-
-@font-face {
-    font-family: "Cinzel";
-
-    src:
-        url("font/Cinzel/static/Cinzel-SemiBold.ttf")
-        format("truetype");
-
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
-
-
-/* =========================
-   ESTRUTURA GERAL
+ESTRUTURA DAS SEÇÕES
 ========================= */
 
 .section {
@@ -127,13 +10,14 @@ body {
     padding: 30px 24px;
 
     background: var(--fundo-transparente);
+
     border-radius: var(--raio-medio);
     box-shadow: var(--sombra-padrao);
 }
 
 
 /* =========================
-   NAVBAR
+NAVBAR
 ========================= */
 
 .navbar {
@@ -203,7 +87,7 @@ nav a:focus-visible {
 
 
 /* =========================
-   TÍTULOS PRATEADOS
+TÍTULOS PRATEADOS
 ========================= */
 
 .logo,
@@ -212,6 +96,7 @@ nav a:focus-visible {
     font-family: "Cinzel", serif;
 
     background-image: var(--prata-brilho);
+
     background-clip: text;
     -webkit-background-clip: text;
 
@@ -231,6 +116,7 @@ nav a:focus-visible {
     display: inline-block;
 
     max-width: 100%;
+
     margin-top: 0;
     margin-bottom: 15px;
 
@@ -247,12 +133,13 @@ nav a:focus-visible {
 
 
 /* =========================
-   TEXTOS DAS SEÇÕES
+TEXTOS DAS SEÇÕES
 ========================= */
 
 .section p {
     margin-top: 0;
     margin-bottom: 20px;
+
     padding: 15px;
 
     color: var(--texto-principal);
@@ -263,32 +150,30 @@ nav a:focus-visible {
 
 
 /* =========================
-   CONTAINER DOS CARDS
+CONTAINER DOS CARDS
 ========================= */
 
 .cards {
     display: grid;
-
-    grid-template-columns:
-        repeat(auto-fit, minmax(min(100%, 250px), 1fr));
-
+    grid-template-columns: 1fr;
     gap: 30px;
 }
 
 
 /* =========================
-   CARDS
+CARDS
 ========================= */
 
 .card {
     position: relative;
-    isolation: isolate;
 
     display: flex;
     flex-direction: column;
-
+    
+    width: 100%;
     min-width: 0;
     min-height: 100%;
+
     padding: 25px;
 
     overflow: hidden;
@@ -310,14 +195,20 @@ nav a:focus-visible {
 
     position: absolute;
     inset: 0;
-    z-index: -1;
+
+    z-index: 0;
 
     background:
-        url("img/bgimage.png")
-        center / cover no-repeat;
+        url("../img/bgimage.png") center / cover no-repeat;
 
     opacity: 0.35;
+
     pointer-events: none;
+}
+
+.card>* {
+    position: relative;
+    z-index: 1;
 }
 
 .card:hover {
@@ -338,13 +229,13 @@ nav a:focus-visible {
 
     margin-bottom: 20px;
 
-    text-align: left;
     line-height: 1.6;
+    text-align: left;
 }
 
 
 /* =========================
-   BOTÕES
+BOTÕES
 ========================= */
 
 .btn {
@@ -353,6 +244,7 @@ nav a:focus-visible {
     justify-content: center;
 
     max-width: 100%;
+
     margin-top: 20px;
     padding: 14px 24px;
 
@@ -396,11 +288,12 @@ nav a:focus-visible {
 
 
 /* =========================
-   RODAPÉ
+RODAPÉ
 ========================= */
 
 footer {
     width: 100%;
+
     margin-top: 30px;
     padding: 30px 20px;
 
@@ -409,137 +302,4 @@ footer {
 
     font-size: 0.85rem;
     text-align: center;
-}
-
-
-/* =========================
-   TABLETS
-========================= */
-
-@media (max-width: 768px) {
-    .section {
-        width: calc(100% - 28px);
-
-        margin: 14px auto;
-        padding: 26px 20px;
-    }
-
-    nav a {
-        padding: 10px 16px;
-    }
-
-    .cards {
-        gap: 20px;
-    }
-
-    .card {
-        padding: 22px;
-    }
-}
-
-
-/* =========================
-   CELULARES
-========================= */
-
-@media (max-width: 480px) {
-    body {
-        background-size:
-            380px 380px,
-            400% 400%;
-
-        animation: none;
-    }
-
-    .section {
-        width: calc(100% - 20px);
-
-        margin: 10px auto;
-        padding: 22px 15px;
-
-        border-radius: 12px;
-    }
-
-    .nav-container {
-        gap: 12px;
-    }
-
-    nav {
-        gap: 8px;
-    }
-
-    nav a {
-        flex: 1 1 auto;
-
-        min-width: 90px;
-        padding: 10px 12px;
-
-        font-size: 0.88rem;
-        border-radius: 10px;
-    }
-
-    .section h1,
-    .section h2 {
-        display: block;
-
-        text-align: center;
-    }
-
-    .section p {
-        padding: 13px;
-
-        font-size: 0.95rem;
-        text-align: left;
-    }
-
-    .cards {
-        grid-template-columns: 1fr;
-        gap: 18px;
-    }
-
-    .card {
-        width: 100%;
-        padding: 20px 16px;
-    }
-
-    .card p {
-        font-size: 0.94rem;
-    }
-
-    .btn {
-        width: 100%;
-
-        padding: 13px 14px;
-        font-size: 0.95rem;
-    }
-
-    footer {
-        margin-top: 20px;
-        padding: 24px 15px;
-    }
-}
-
-
-/* =========================
-   ACESSIBILIDADE:
-   MENOS ANIMAÇÕES
-========================= */
-
-@media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
-
-    body {
-        animation: none;
-    }
-
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-    }
 }

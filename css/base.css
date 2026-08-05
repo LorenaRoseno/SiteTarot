@@ -1,0 +1,102 @@
+/* =========================
+VARIÁVEIS GLOBAIS
+========================= */
+
+:root {
+    --fundo-escuro: #020209;
+    --fundo-transparente: rgba(2, 2, 9, 0.82);
+
+    --prata-cor: #e8e8e8;
+    --texto-principal: #ffffff;
+    --texto-secundario: #c7c7c7;
+
+    --prata-brilho: linear-gradient(120deg,
+            #ffffff 0%,
+            #dcdcdc 25%,
+            #ffffff 45%,
+            #bfbfbf 60%,
+            #ffffff 75%,
+            #eaeaea 100%);
+
+    --borda-padrao: 2px solid var(--prata-cor);
+
+    --raio-pequeno: 10px;
+    --raio-medio: 15px;
+
+    --sombra-padrao: 0 0 10px rgba(0, 0, 0, 0.8);
+    --sombra-brilho: 0 0 20px rgba(232, 232, 232, 0.7);
+
+    --transicao-padrao: 0.3s ease;
+}
+
+
+/* =========================
+RESET BÁSICO
+========================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+
+    overflow-x: hidden;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+    line-height: 1.6;
+
+    color: var(--texto-principal);
+
+    background:
+        url("../img/bgfull.png"),
+        linear-gradient(-45deg,
+            #000000,
+            #020209,
+            #000000,
+            #020209);
+
+    background-size:
+        500px 500px,
+        cover;
+
+    background-repeat:
+        repeat,
+        no-repeat;
+
+    background-position:
+        center,
+        center;
+
+    background-attachment:
+        fixed,
+        fixed;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+
+/* =========================
+FONTE
+========================= */
+
+@font-face {
+    font-family: "Cinzel";
+
+    src:
+        url("../font/Cinzel/static/Cinzel-SemiBold.ttf") format("truetype");
+
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
