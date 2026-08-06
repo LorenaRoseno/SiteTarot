@@ -27,6 +27,9 @@ VARIÁVEIS GLOBAIS
     --sombra-brilho: 0 0 20px rgba(232, 232, 232, 0.7);
 
     --transicao-padrao: 0.3s ease;
+
+    --prata-hover: #bfc0c4;
+    --sombra-prata-hover: 0 0 20px rgba(192, 192, 192, 0.75);
 }
 
 

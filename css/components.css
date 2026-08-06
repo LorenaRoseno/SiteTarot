@@ -170,10 +170,7 @@ CARDS
     display: flex;
     flex-direction: column;
     
-    width: 100%;
     min-width: 0;
-    min-height: 100%;
-
     padding: 25px;
 
     overflow: hidden;
@@ -199,7 +196,7 @@ CARDS
     z-index: 0;
 
     background:
-        url("../img/bgimage.png") center / cover no-repeat;
+        url("../img/bgcard.png") center / cover no-repeat;
 
     opacity: 0.35;
 
@@ -213,7 +210,9 @@ CARDS
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--sombra-brilho);
+
+    border-color: var(--prata-hover);
+    box-shadow: var(--sombra-prata-hover);
 }
 
 .card h3 {
@@ -224,15 +223,46 @@ CARDS
     line-height: 1.3;
 }
 
-.card p {
+.card-content {
     flex-grow: 1;
+}
 
-    margin-bottom: 20px;
+.card h4 {
+    margin: 5px 0 10px;
+
+    color: var(--prata-cor);
+    font-size: 1rem;
+}
+
+.card p{
+    margin: 0 0 16px;
+    padding: 0;
+
+    background: transparent;
+    border-radius: 0;
 
     line-height: 1.6;
     text-align: left;
 }
 
+.card-list {
+    margin: 0 0 20px;
+    padding-left: 22px;
+}
+
+.card-list li {
+    margin-bottom: 8px;
+}
+
+.card .card-warning {
+    color: var(--texto-secundario);
+    font-style: italic;
+}
+
+.card .card-info {
+    margin-bottom: 18px;
+    padding: 12px;
+}
 
 /* =========================
 BOTÕES
@@ -270,9 +300,9 @@ BOTÕES
 
 .btn:hover {
     color: var(--fundo-escuro);
-    background: var(--prata-cor);
+    background: var(--prata-hover);
 
-    box-shadow: var(--sombra-brilho);
+    box-shadow: var(--sombra-prata-hover);
     transform: translateY(-4px);
 }
 
@@ -292,8 +322,6 @@ RODAPÉ
 ========================= */
 
 footer {
-    width: 100%;
-
     margin-top: 30px;
     padding: 30px 20px;
 
