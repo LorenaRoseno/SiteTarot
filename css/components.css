@@ -92,7 +92,8 @@ TÍTULOS PRATEADOS
 
 .logo,
 .section h1,
-.section h2 {
+.section h2,
+.modal-content h2 {
     font-family: "Cinzel", serif;
 
     background-image: var(--prata-brilho);
@@ -112,7 +113,8 @@ TÍTULOS PRATEADOS
 }
 
 .section h1,
-.section h2 {
+.section h2,
+.modal-content h2 {
     display: inline-block;
 
     max-width: 100%;
@@ -127,7 +129,8 @@ TÍTULOS PRATEADOS
     font-size: clamp(1.8rem, 5vw, 2.7rem);
 }
 
-.section h2 {
+.section h2,
+.modal-content h2 {
     font-size: clamp(1.4rem, 4vw, 2rem);
 }
 
@@ -316,6 +319,310 @@ BOTÕES
     margin-top: auto;
 }
 
+/* =========================
+AGENDAMENTO
+========================= */
+
+.modal-agendamento {
+    position: fixed;
+    inset: 0;
+
+    z-index: 1000;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 16px;
+
+    overflow-y: auto;
+}
+
+.modal-agendamento.is-open {
+    display: flex;
+}
+
+.modal-overlay {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.85);
+}
+
+.modal-content {
+    position: relative;
+    z-index: 1;
+
+    width: min(460px, 100%);
+
+    max-height: calc(100vh - 32px);
+    max-height: calc(100dvh - 32px);
+
+    padding: 24px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    background: var(--fundo-escuro);
+
+    border: var(--borda-padrao);
+    border-radius: var(--raio-medio);
+
+    box-shadow: var(--sombra-prata-hover);
+
+    overscroll-behavior: contain;
+}
+
+.modal-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: var(--prata-cor);
+
+    border-radius: var(--raio-pequeno);
+}
+
+.modal-close {
+    position: absolute;
+
+    top: 12px;
+    right: 15px;
+
+    width: 36px;
+    height: 36px;
+
+    cursor: pointer;
+
+    color: var(--texto-principal);
+    background: transparent;
+
+    font-size: 1.6rem;
+
+    border: 0;
+}
+
+.agendamento-leitura {
+    margin: 0 0 18px;
+    padding: 0;
+
+    color: var(--prata-cor);
+    background: transparent;
+
+    font-weight: 700;
+}
+
+.etapa-agendamento h3 {
+    margin: 0 0 16px;
+
+    font-size: 1.05rem;
+    text-align: center;
+}
+
+.calendar-header {
+    display: grid;
+
+    grid-template-columns: 44px 1fr 44px;
+
+    align-items: center;
+
+    margin-bottom: 12px;
+}
+
+.calendar-header h4 {
+    margin: 0;
+
+    text-align: center;
+}
+
+.calendar-nav {
+    width: 40px;
+    height: 40px;
+
+    cursor: pointer;
+
+    color: var(--texto-principal);
+    background: var(--fundo-escuro);
+
+    font-size: 1.5rem;
+
+    border: var(--borda-padrao);
+    border-radius: 50%;
+}
+
+.calendar-nav:hover {
+    color: var(--fundo-escuro);
+    background: var(--prata-hover);
+}
+
+.calendar-weekdays,
+.calendar-days {
+    display: grid;
+
+    grid-template-columns: repeat(7, 1fr);
+
+    gap: 6px;
+}
+
+.calendar-weekdays {
+    margin-bottom: 6px;
+
+    color: var(--texto-secundario);
+
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+
+    cursor: pointer;
+
+    color: var(--texto-principal);
+    background: transparent;
+
+    border: 1px solid transparent;
+    border-radius: 50%;
+}
+
+.calendar-day:hover {
+    color: var(--fundo-escuro);
+    background: var(--prata-hover);
+}
+
+.calendar-day:disabled {
+    cursor: default;
+
+    color: #666;
+
+    opacity: 0.5;
+}
+
+.calendar-day:disabled:hover {
+    color: #666;
+    background: transparent;
+}
+
+.calendar-empty {
+    aspect-ratio: 1;
+}
+
+.etapa-oculta {
+    display: none;
+}
+
+.voltar-agendamento {
+    margin-bottom: 20px;
+
+    cursor: pointer;
+
+    color: var(--prata-cor);
+    background: transparent;
+
+    font: inherit;
+    font-weight: 700;
+
+    border: 0;
+}
+
+.voltar-agendamento:hover {
+    text-decoration: underline;
+}
+
+.data-selecionada {
+    padding: 0;
+
+    color: var(--texto-secundario);
+    background: transparent;
+
+    text-align: center;
+}
+
+.horarios-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 8px;
+
+    margin-top: 16px;
+}
+
+.horario-btn {
+    padding: 10px 6px;
+
+    cursor: pointer;
+
+    color: var(--texto-principal);
+    background: var(--fundo-escuro);
+
+    font: inherit;
+    font-weight: 700;
+
+    border: var(--borda-padrao);
+    border-radius: var(--raio-pequeno);
+
+    transition:
+        color var(--transicao-padrao),
+        background-color var(--transicao-padrao),
+        transform var(--transicao-padrao);
+}
+
+.horario-btn:hover {
+    color: var(--fundo-escuro);
+    background: var(--prata-hover);
+
+    transform: translateY(-2px);
+}
+
+.resumo-agendamento {
+    margin-bottom: 18px;
+    padding: 12px;
+
+    border: var(--borda-padrao);
+    border-radius: var(--raio-pequeno);
+}
+
+.resumo-agendamento p {
+    margin: 5px 0;
+    padding: 0;
+
+    background: transparent;
+}
+
+#form-agendamento {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+#form-agendamento label {
+    font-weight: 700;
+}
+
+#form-agendamento input {
+    width: 100%;
+
+    padding: 10px 12px;
+
+    color: var(--texto-principal);
+    background: var(--fundo-escuro);
+
+    font: inherit;
+
+    border: var(--borda-padrao);
+    border-radius: var(--raio-pequeno);
+}
+
+#form-agendamento input:focus {
+    outline: 2px solid var(--prata-cor);
+    outline-offset: 2px;
+}
+
+#form-agendamento .btn {
+    margin-top: 10px;
+}
+
 
 /* =========================
 RODAPÉ
@@ -331,3 +638,4 @@ footer {
     font-size: 0.85rem;
     text-align: center;
 }
+

@@ -81,7 +81,8 @@
 
                     <div class="card-content">
                         <p class="card-description">
-                            Durante essa leitura você vai entender o que realmente está acontecendo no seu relacionamento.
+                            Durante essa leitura você vai entender o que realmente está acontecendo no seu
+                            relacionamento.
                         </p>
 
                         <h4>Você vai enxergar com clareza:</h4>
@@ -102,7 +103,7 @@
                         <strong>Duração:</strong> aproximadamente 40 minutos.
                     </p>
 
-                    <button class="btn" type="button" onclick="abrirWhats('Quero agendar a leitura de Caminhos do Coração! Meu nome é: ')">
+                    <button class="btn btn-agendamento" type="button" data-leitura="Caminhos do Coração">
                         Agendar por R$
                         60,00
                     </button>
@@ -125,7 +126,8 @@
                             <li>vale a pena continuar onde está ou mudar de direção?</li>
                         </ul>
                         <p class="card-warning">
-                            É uma leitura para te dar direção mesmo que isso te faça questionar as escolhas que você vem mantendo.
+                            É uma leitura para te dar direção mesmo que isso te faça questionar as escolhas que você vem
+                            mantendo.
                         </p>
                     </div>
 
@@ -133,7 +135,8 @@
                         <strong>Duração:</strong> aproximadamente 30 minutos.
                     </p>
 
-                    <button class="btn" type="button" onclick="abrirWhats('Quero agendar a leitura de Caminhos Profissionais! Meu nome é: ')">
+                    <button class="btn" type="button"
+                        onclick="abrirWhats('Quero agendar a leitura de Caminhos Profissionais! Meu nome é: ')">
                         Agendar por R$
                         50,00
                     </button>
@@ -156,13 +159,15 @@
                         </ul>
 
                         <p class="card-warning">
-                            Não é uma leitura sobre sorte ou promessa de dinheiro fácil, mas sim para te dar clareza mesmo que isso te obrigue a encarar hábitos e escolhas que precisam mudar.
+                            Não é uma leitura sobre sorte ou promessa de dinheiro fácil, mas sim para te dar clareza
+                            mesmo que isso te obrigue a encarar hábitos e escolhas que precisam mudar.
                         </p>
                     </div>
                     <p class="card-info">
                         <strong>Duração:</strong> aproximadamente 30 minutos.
                     </p>
-                    <button class="btn" type="button" onclick="abrirWhats('Quero agendar a leitura de Caminhos Financeiros! Meu nome é: ')">
+                    <button class="btn" type="button"
+                        onclick="abrirWhats('Quero agendar a leitura de Caminhos Financeiros! Meu nome é: ')">
                         Agendar por R$
                         45,00
                     </button>
@@ -174,14 +179,104 @@
         <section id="contato" class="section">
             <h2>Dúvidas?</h2>
             <p>
-                Eu sei que você deve estar se perguntando: "Qual escolher?" <br> 
-                Clique no botão abaixo e fale diretamente com a especialista que irá te indicar o melhor caminho para suas tiragens!
+                Eu sei que você deve estar se perguntando: "Qual escolher?" <br>
+                Clique no botão abaixo e fale diretamente com a especialista que irá te indicar o melhor caminho para
+                suas tiragens!
             </p>
             <a class="btn" onclick="abrirWhats('Quero minha leitura, mas preciso de direcionamento, pode me ajudar?')">
                 Fale diretamente com nossa equipe!
             </a>
         </section>
     </main>
+
+    <div class="modal-agendamento" id="modal-agendamento" aria-hidden="true">
+        <div class="modal-overlay" data-fechar-agendamento></div>
+
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="titulo-agendamento">
+            <button class="modal-close" type="button" aria-label="Fechar agendamento" data-fechar-agendamento>
+                ×
+            </button>
+
+            <h2 id="titulo-agendamento">Agende sua consulta</h2>
+
+            <p class="agendamento-leitura" id="agendamento-leitura">
+                Consulta Noctra Tarot
+            </p>
+
+            <div class="etapa-agendamento" id="etapa-data">
+
+                <h3>Escolha uma data</h3>
+
+                <div class="calendar-header">
+                    <button type="button" class="calendar-nav" id="mes-anterior" aria-label="Mês anterior">
+                        ‹
+                    </button>
+
+                    <h4 id="calendar-mes"></h4>
+
+                    <button type="button" class="calendar-nav" id="mes-seguinte" aria-label="Próximo mês">
+                        ›
+                    </button>
+                </div>
+
+                <div class="calendar-weekdays">
+                    <span>Dom</span>
+                    <span>Seg</span>
+                    <span>Ter</span>
+                    <span>Qua</span>
+                    <span>Qui</span>
+                    <span>Sex</span>
+                    <span>Sáb</span>
+                </div>
+
+                <div class="calendar-days" id="calendar-days"></div>
+
+            </div>
+
+            <div class="etapa-agendamento etapa-oculta" id="etapa-horarios">
+                <button class="voltar-agendamento" id="voltar-para-data" type="button">
+                    ← Voltar
+                </button>
+
+                <h3>Escolha um horário</h3>
+
+                <p class="data-selecionada" id="data-selecionada"></p>
+
+                <div class="horarios-grid" id="horarios-disponiveis"></div>
+            </div>
+
+            <div class="etapa-agendamento etapa-oculta" id="etapa-dados">
+                <button class="voltar-agendamento" id="voltar-para-horarios" type="button">
+                    ← Voltar
+                </button>
+
+                <h3>Finalize seu agendamento</h3>
+
+                <div class="resumo-agendamento">
+                    <p id="resumo-leitura"></p>
+                    <p id="resumo-data"></p>
+                    <p id="resumo-horario"></p>
+                </div>
+
+                <form id="form-agendamento">
+                    <label for="cliente-nome">Nome</label>
+                    <input id="cliente-nome" name="nome" type="text" required>
+
+                    <label for="cliente-email">E-mail</label>
+                    <input id="cliente-email" name="email" type="email" required>
+
+                    <label for="cliente-whatsapp">WhatsApp</label>
+                    <input id="cliente-whatsapp" name="whatsapp" type="tel" required>
+
+                    <button class="btn" type="submit">
+                        Confirmar agendamento
+                    </button>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
 
     <footer>
         © 2026 Noctra Tarot
