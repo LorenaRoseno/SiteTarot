@@ -1,3 +1,5 @@
+// Backend de agendamento da Noctra Tarot
+
 export default async (request) => {
     if (request.method !== "POST") {
         return Response.json(
