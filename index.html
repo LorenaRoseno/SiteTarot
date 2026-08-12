@@ -271,10 +271,21 @@
                     <button class="btn" type="submit">
                         Confirmar agendamento
                     </button>
+                    <p class="mensagem-agendamento" id="mensagem-agendamento" aria-live="polite">
+
+                    </p>
                 </form>
             </div>
+            
+            <div class="etapa-agendamento etapa-oculta" id="etapa-sucesso">
+                <h3>Agendamento confirmado</h3>
 
+                <p id="sucesso-agendamento"></p>
 
+                <button class="btn" type="button" data-fechar-agendamento>
+                    Fechar
+                </button>
+            </div>
         </div>
     </div>
 

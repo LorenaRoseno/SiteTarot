@@ -589,6 +589,22 @@ AGENDAMENTO
     background: transparent;
 }
 
+.mensagem-agendamento {
+    min-height: 24px;
+
+    margin: 4px 0 0;
+
+    color: var(--texto-secundario);
+
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.mensagem-agendamento.is-error {
+    color: #ffb4b4;
+}
+
+
 #form-agendamento {
     display: flex;
     flex-direction: column;
@@ -621,6 +637,16 @@ AGENDAMENTO
 
 #form-agendamento .btn {
     margin-top: 10px;
+}
+
+#etapa-sucesso {
+    text-align: center;
+}
+
+#etapa-sucesso p {
+    margin-bottom: 20px;
+
+    color: var(--texto-principal);
 }
 
 

@@ -251,6 +251,9 @@ function selecionarHorario(
     const horario =
         botao.dataset.horario;
 
+    estadoAgendamento.data = data;
+    estadoAgendamento.horario = horario;
+
 
     resumoLeitura.textContent =
         `Leitura: ${leituraAgendamento.textContent}`;
@@ -272,11 +275,36 @@ function selecionarHorario(
 }
 
 
-function abrirAgendamento(
-    leitura
-) {
+function abrirAgendamento(leitura) {
+    estadoAgendamento.leitura = leitura;
+    estadoAgendamento.data = "";
+    estadoAgendamento.horario = "";
+
     leituraAgendamento.textContent =
         leitura;
+
+    formAgendamento.reset();
+
+    mensagemAgendamento.textContent = "";
+    mensagemAgendamento.classList.remove(
+        "is-error"
+    );
+
+    etapaHorarios.classList.add(
+        "etapa-oculta"
+    );
+
+    etapaDados.classList.add(
+        "etapa-oculta"
+    );
+
+    etapaSucesso.classList.add(
+        "etapa-oculta"
+    );
+
+    etapaData.classList.remove(
+        "etapa-oculta"
+    );
 
     modalAgendamento.classList.add(
         "is-open"
@@ -305,10 +333,162 @@ function fecharAgendamento() {
     document.body.style.overflow = "";
 }
 
+async function confirmarAgendamento(
+    evento
+) {
+    evento.preventDefault();
+
+    mensagemAgendamento.textContent = "";
+    mensagemAgendamento.classList.remove(
+        "is-error"
+    );
+
+    const dadosFormulario =
+        new FormData(formAgendamento);
+
+    const nome =
+        dadosFormulario.get("nome")?.trim();
+
+    const email =
+        dadosFormulario.get("email")?.trim();
+
+    const whatsapp =
+        dadosFormulario.get("whatsapp")?.trim();
+
+
+    if (
+        !nome ||
+        !email ||
+        !whatsapp ||
+        !estadoAgendamento.leitura ||
+        !estadoAgendamento.data ||
+        !estadoAgendamento.horario
+    ) {
+        mensagemAgendamento.textContent =
+            "Preencha todos os campos.";
+
+        mensagemAgendamento.classList.add(
+            "is-error"
+        );
+
+        return;
+    }
+
+
+    const textoOriginal =
+        botaoConfirmar.textContent;
+
+    botaoConfirmar.disabled = true;
+    botaoConfirmar.textContent =
+        "Confirmando...";
+
+
+    try {
+        const resposta = await fetch(
+            "/api/agendar",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body: JSON.stringify({
+                    nome,
+                    email,
+                    whatsapp,
+                    leitura:
+                        estadoAgendamento.leitura,
+                    data:
+                        estadoAgendamento.data,
+                    horario:
+                        estadoAgendamento.horario
+                })
+            }
+        );
+
+
+        let resultado;
+
+        try {
+            resultado = await resposta.json();
+        } catch {
+            throw new Error(
+                "O serviço de agendamento não está disponível no momento."
+            );
+        }
+
+
+        if (
+            !resposta.ok ||
+            !resultado.ok
+        ) {
+            throw new Error(
+                resultado.erro ||
+                "Não foi possível concluir o agendamento."
+            );
+        }
+
+
+        /*
+        O horário acabou de ser reservado.
+        Remove essa data do cache para
+        não continuar exibindo o slot antigo.
+        */
+        cacheHorarios.delete(
+            estadoAgendamento.data
+        );
+
+
+        const dataFormatada =
+            formatarData(
+                estadoAgendamento.data
+            );
+
+
+        sucessoAgendamento.textContent =
+            `${estadoAgendamento.leitura} agendada para ${dataFormatada}, às ${estadoAgendamento.horario}.`;
+
+
+        etapaDados.classList.add(
+            "etapa-oculta"
+        );
+
+        etapaSucesso.classList.remove(
+            "etapa-oculta"
+        );
+
+
+    } catch (erro) {
+        console.error(
+            "Erro ao confirmar agendamento:",
+            erro
+        );
+
+        mensagemAgendamento.textContent =
+            erro.message;
+
+        mensagemAgendamento.classList.add(
+            "is-error"
+        );
+
+    } finally {
+        botaoConfirmar.disabled = false;
+
+        botaoConfirmar.textContent =
+            textoOriginal;
+    }
+}
 
 export function inicializarAgendamento() {
 
     /* ABRIR MODAL */
+
+    formAgendamento.addEventListener(
+        "submit",
+        confirmarAgendamento
+    );
 
     botoesAgendamento.forEach(
         (botao) => {
@@ -409,3 +589,26 @@ export function inicializarAgendamento() {
         }
     );
 }
+
+const formAgendamento =
+    document.querySelector("#form-agendamento");
+
+const etapaSucesso =
+    document.querySelector("#etapa-sucesso");
+
+const mensagemAgendamento =
+    document.querySelector("#mensagem-agendamento");
+
+const sucessoAgendamento =
+    document.querySelector("#sucesso-agendamento");
+
+const botaoConfirmar =
+    formAgendamento.querySelector(
+        'button[type="submit"]'
+    );
+
+const estadoAgendamento = {
+    leitura: "",
+    data: "",
+    horario: ""
+};
