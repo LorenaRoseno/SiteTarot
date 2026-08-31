@@ -1,4 +1,4 @@
-// Backend de agendamento da Noctra Tarot
+// Backend de agendamento da Nodus Tarot
 
 export default async (request) => {
     if (request.method !== "POST") {

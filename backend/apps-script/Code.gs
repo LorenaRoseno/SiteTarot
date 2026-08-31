@@ -1,4 +1,4 @@
-const CALENDAR_ID = "noctratarot@gmail.com";
+const CALENDAR_ID = "nodustarot@gmail.com";
 const TIME_ZONE = "America/Sao_Paulo";
 const DURACAO_CONSULTA = 45;
 const INTERVALO_CONSULTAS = 5;
@@ -52,7 +52,7 @@ function doGet(e) {
   if (!data) {
     return respostaJson({
       ok: true,
-      mensagem: "API Noctra funcionando.",
+      mensagem: "API Nodus funcionando.",
       timeZone: TIME_ZONE
     });
   }
@@ -408,7 +408,7 @@ function doPost(e) {
       ========================= */
 
       const evento = agenda.createEvent(
-        "Consulta Noctra Tarot",
+        "Consulta Nodus Tarot",
         inicio,
         fim,
         {
